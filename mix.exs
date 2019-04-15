@@ -25,7 +25,7 @@ defmodule AliyunOss.MixProject do
   defp deps do
     [
       {:mime, "~> 1.3"},
-      {:aliyun_util, "~> 0.3.0" },
+      {:aliyun_util, git: "https://github.com/leozhang37/aliyun_util.git" },
       {:httpoison, "~> 1.4"},
       {:elixir_xml_to_map, "~> 0.1"},
       {:jason, "~> 1.1"},
