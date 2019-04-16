@@ -175,10 +175,11 @@ defmodule Aliyun.Oss.Object do
   """
   @spec object_url(String.t(), String.t(), integer()) :: String.t()
   def object_url(bucket, object, expires) do
+	endpoint = String.replace("#{endpoint()}", "-internal", "")  
     signature =
       Request.gen_signature(%Request{
         verb: "GET",
-        host: "#{bucket}.#{endpoint()}",
+        host: "#{bucket}.#{endpoint}",
         path: "",
         resource: "/#{bucket}/#{object}",
         query_params: %{},
@@ -191,7 +192,7 @@ defmodule Aliyun.Oss.Object do
 
     URI.to_string(%URI{
       scheme: "https",
-      host: "#{bucket}.#{endpoint()}",
+      host: "#{bucket}.#{endpoint}",
       path: "/#{object}",
       query:
         URI.encode_query(%{
