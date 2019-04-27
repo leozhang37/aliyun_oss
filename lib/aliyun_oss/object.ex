@@ -202,6 +202,18 @@ defmodule Aliyun.Oss.Object do
         })
     })
   end
+  
+  @spec object_url(String.t(), String.t()) :: String.t()
+  def object_url(bucket, object) do
+	endpoint = String.replace("#{endpoint()}", "-internal", "")  
+    
+    URI.to_string(%URI{
+      scheme: "https",
+      host: "#{bucket}.#{endpoint}",
+      path: "/#{object}"
+      
+    })
+  end
 
   @doc """
   PutObject接口用于上传文件（Object）。
